@@ -1,0 +1,23 @@
+
+body{
+    font-family: "Fira sin condensación", sans-serif;
+    min-height: 100vh;
+    position: relative;
+    padding-bottom: 12rem;
+}
+
+.barra-navegacion{
+    background-color: #073954;
+    color:white;
+    font-weight: bold;                      
+}
+
+#textAreaNote{
+    height: 12rem;
+}
+
+.footer{
+    height: 6rem;
+    position: absolute;
+    bottom: 0;
+}
