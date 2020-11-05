@@ -29,6 +29,11 @@
         </button>
     </nav>
 
+        <!-- Button trigger modal Create Note -->
+    <button type="button" class="btn btn-info m-5" data-toggle="modal" data-target="#exampleModal">
+        Agregar Nota
+    </button>
+
     <div class="container my-3">
         <div id="tableNotes" class="row">
             
@@ -41,12 +46,9 @@
     </div>
 
 
-    <!-- Button trigger modal -->
-    <button type="button" class="btn btn-info m-5" data-toggle="modal" data-target="#exampleModal">
-        Agregar Nota
-    </button>
 
-    <!-- Modal -->
+
+    <!-- Modal Create Note -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -66,18 +68,49 @@
                         <div class="form-group">
                             <label for="exampleFormControlTextarea1">Nota</label>
                             <textarea class="form-control" id="textAreaNote" rows="3" required maxlength="500"></textarea>
-                            <button type="submit" class="btn btn-primary my-3">Guardar</button>
                         </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary my-3" data-dismiss="modal">Close</button>
-                </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary my-3">Guardar</button>
+                        <button type="button" class="btn btn-secondary my-3" data-dismiss="modal">Close</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
 
 
+
+    <!-- Modal Edit Note -->
+    <div class="modal fade" id="modalEditNote" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Mis Notas</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="formEditNote">
+                        <div class="form-group">
+                            <label for="exampleFormControlInput1">Titulo</label>
+                            <input type="text" class="form-control" id="titleNoteEdit"
+                                placeholder="Titulo de la nota" required maxlength="60">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleFormControlTextarea1">Nota</label>
+                            <textarea class="form-control" id="textAreaNoteEdit" rows="3" required maxlength="500"></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary my-3">Editar</button>
+                        <button type="button" class="btn btn-secondary my-3" data-dismiss="modal">Close</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 
 
 

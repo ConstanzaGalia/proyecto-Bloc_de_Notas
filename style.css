@@ -16,6 +16,10 @@ body{
     height: 12rem;
 }
 
+#textAreaNoteEdit{
+    height: 12rem;
+}
+
 .footer{
     height: 3rem;
     position: absolute;
