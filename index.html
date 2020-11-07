@@ -29,14 +29,26 @@
         </button>
     </nav>
 
-        <!-- Button trigger modal Create Note -->
-    <button type="button" class="btn btn-info m-5" data-toggle="modal" data-target="#exampleModal">
-        Agregar Nota
-    </button>
-
-    <div class="container my-3">
-        <div id="tableNotes" class="row">
-            
+    <div class="container">
+        <div class="row m-5">
+            <div class="col-6">
+                <!-- Button trigger modal Create Note -->
+                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModal">
+                    Agregar Nota
+                </button>
+            </div>
+            <div class="col-6">
+                <form id="searchForm" class="form-inline my-2 my-lg-0">
+                    <input id="searchInput" class="form-control mr-sm-2" type="search" placeholder="Ingrese su busqueda" aria-label="Search">
+                    <button class="btn btn-outline-info my-2 my-sm-0" type="submit" onclick="displaySearchNotes()"><i class="fas fa-search"></i></button>
+                </form>
+            </div>
+        </div>
+    </div>
+        
+        <div class="container my-3">
+            <div id="tableNotes" class="row">
+                
 
             
 
