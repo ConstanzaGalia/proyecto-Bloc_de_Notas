@@ -36,15 +36,12 @@ formNotes.onsubmit = (event) => {
     localStorage.setItem('notes', JSON.stringify(notes));
     alert('Su Nota se guardó con éxito')
     formNotes.reset();
-    displayNotes();
+    displayAllNotes();
 }
 
-function displayNotes() {
-    //Traer las notas de localStorage
-    const notes = JSON.parse(localStorage.getItem('notes')) || [];
+function displayNotes(notes) {
     const cardsNotes = [];
 
-    
     for (let i = 0; i < notes.length; i++) {
         const note = notes[i];
         const date = new Date (note.createdAt);
@@ -70,10 +67,10 @@ function displayNotes() {
     tableNotes.innerHTML = cardsNotes.join('');
     // console.log(cardsNotes.join(''));
 }
-displayNotes();
+displayAllNotes();
 
 
-function displaySearchNotes() {
+function displayAllNotes() {
     const notes = JSON.parse(localStorage.getItem('notes')) || [];
     displayNotes(notes);
 } 
@@ -82,7 +79,7 @@ function deleteNote(noteId) {
     const notes = JSON.parse(localStorage.getItem('notes')) || [];
     const filteredNotes = notes.filter((note) => note.id !== noteId);
     localStorage.setItem('notes', JSON.stringify(filteredNotes));
-    displayNotes();
+    displayAllNotes();
 }
 
 
@@ -110,7 +107,7 @@ formEditNote.onsubmit = (e) => {
     //Limpiar el form
     formEditNote.reset();
     //Actualizar las notas en pantalla
-    displayNotes();
+    displayAllNotes();
     //Cerrar el modal al editar la nota
     $('#modalEditNote').modal('hide');
 }
@@ -123,7 +120,7 @@ searchForm.onsubmit = (e) => {
     const filteredNotes = notes.filter(note => (
         note.titleNote.toLowerCase().includes(term.toLowerCase())
     ));
-    displaySearchNotes(filteredNotes);
+    displayNotes(filteredNotes);
     console.log("filteredNotes", filteredNotes)
 
 }
