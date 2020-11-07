@@ -30,14 +30,20 @@
     </nav>
 
     <div class="container">
-        <div class="row m-5">
-            <div class="col-6">
+        <div class="row my-5">
+            <div class="col-m-4 mx-auto">
                 <!-- Button trigger modal Create Note -->
                 <button type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModal">
                     Agregar Nota
                 </button>
             </div>
-            <div class="col-6">
+            <div class="col-m-4 mx-auto">
+                <!-- Button trigger modal Create Category -->
+                <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#modalAddCategory">
+                    Agregar Categoría
+                </button>
+            </div>
+            <div class="col-m-4 mx-auto">
                 <form id="searchForm" class="form-inline my-2 my-lg-0">
                     <input id="searchInput" class="form-control mr-sm-2" type="search" placeholder="Ingrese su busqueda" aria-label="Search">
                     <button class="btn btn-outline-info my-2 my-sm-0" type="submit" onclick="displayAllNotes()"><i class="fas fa-search"></i></button>
@@ -76,6 +82,14 @@
                             <label for="exampleFormControlInput1">Titulo</label>
                             <input type="text" class="form-control" id="titleNote"
                                 placeholder="Titulo de la nota" required maxlength="60">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleFormControlSelect1">Example select</label>
+                            <select class="form-control" id="selectCategories">
+                            
+                        
+                                
+                            </select>
                         </div>
                         <div class="form-group">
                             <label for="exampleFormControlTextarea1">Nota</label>
@@ -124,6 +138,31 @@
         </div>
     </div>
 
+    <!-- Modal Create Category -->
+    <div class="modal fade" id="modalAddCategory" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Categorías</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="formAddCategory">
+                        <div class="form-group">
+                            <label for="exampleFormControlInput1" class="mb-4">Nombre de la Categoría</label>
+                            <input type="text" class="form-control mb-5" id="categoryName"
+                                placeholder="Agregue una Categoría" required maxlength="30">
+                        </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary my-3">Agregar</button>
+                        <button type="button" class="btn btn-secondary my-3" data-dismiss="modal">Close</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 
 
 

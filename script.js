@@ -1,13 +1,22 @@
+//DECLARACIÓN  DE VARIABLES FORMULARIO AGREGAR NOTAS
 const formNotes = document.getElementById('formNotes');
 const titleNoteInput = document.getElementById('titleNote');
 const textAreaNoteInput = document.getElementById('textAreaNote');
 const tableNotes = document.getElementById('tableNotes');
+//DECLARACIÓN  DE VARIABLES FORMULARIOS EDITAR NOTAS
 const titleNoteEdit = document.getElementById('titleNoteEdit');
 const textAreaNoteEdit = document.getElementById('textAreaNoteEdit');
 const formEditNote = document.getElementById('formEditNote');
 let editNoteId = '';
+//DECLARACIÓN  DE VARIABLES INPUT SEARCH NOTES
 const searchForm = document.getElementById('searchForm');
 const searchInput = document.getElementById('searchInput');
+//DECLARACIÓN  DE VARIABLES FORMULARIO CATEGORÍAS
+const formAddCategory = document.getElementById('formAddCategory');
+const categoryNameInput = document.getElementById('categoryName');
+const selectCategories = document.getElementById('selectCategories');
+let categoryOptionDefault = 'General';
+
 
 
 formNotes.onsubmit = (event) => {
@@ -49,7 +58,7 @@ function displayNotes(notes) {
         <div class="card mx-3" style="width: 18rem;">
                 <div class="card-body">
                     <h5 class="card-title">${note.titleNote}</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Card Category</h6>
+                    <h6 class="card-subtitle mb-2 text-muted"></h6>
                     <hr>
                     <p class="card-text">${note.textAreaNote}</p>
                 </div>
@@ -119,8 +128,39 @@ searchForm.onsubmit = (e) => {
     const term = searchInput.value;
     const filteredNotes = notes.filter(note => (
         note.titleNote.toLowerCase().includes(term.toLowerCase())
+    || note.textAreaNote.toLowerCase().includes(term.toLowerCase())
     ));
     displayNotes(filteredNotes);
-    console.log("filteredNotes", filteredNotes)
+}
+
+//FUNCIONALIDADES PARA INGRESAR CATEGORÍAS
+
+formAddCategory.onsubmit = (e) =>{
+    e.preventDefault();
+    const category = JSON.parse(localStorage.getItem('category')) || [];
+    const categoryName = categoryNameInput.value;
+    
+    category.push({
+        categoryName,
+    })
+    
+    localStorage.setItem('Categorías', JSON.stringify(category));
+    formAddCategory.reset();
 
 }
+
+function toShowCategories() {
+    const category = JSON.parse(localStorage.getItem('category')) || [];
+    const selects = [];
+    for (let i = 0; i < category.length; i++) { //Guardamos los datos de usuario en user.
+        const category = category[i]; //Creamos en un string una fila para la tabla, con los datos del usuario en cada celda
+        const option = `          
+        <option>${categoryOptionDefault}</option>
+        <option>${category.categoryName}</option>
+    `
+        selects.push(option)
+    }
+    selectCategories.innerHTML = selects.join('');
+    console.log(selects.join(''));
+}
+toShowCategories();
