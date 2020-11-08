@@ -25,3 +25,28 @@ body{
     position: absolute;
     bottom: 0;
 }
+
+
+.img-fondo{
+    background-image: url(https://cutewallpaper.org/21/wallpapers-azul/Wallpaper-Minimalista.-Azul-Oscuro-Wallpapers-en-2019-.jpg);
+    background-position: center;
+}
+
+#login{
+    height: 100vh;
+    max-height:500px;
+}
+
+.logo-position{
+    position: absolute;
+    left: 30%;
+    top: 20%;
+}
+
+.form-position{
+    position: fixed;
+    left: 30%;
+    top:30%;
+    width: 40rem;
+    text-align: center;
+}

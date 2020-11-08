@@ -45,6 +45,7 @@ formNotes.onsubmit = (event) => {
     localStorage.setItem('notes', JSON.stringify(notes));
     alert('Su Nota se guardó con éxito')
     formNotes.reset();
+    console.log("formNotes", formNotes)
     displayAllNotes();
 }
 
@@ -144,23 +145,10 @@ formAddCategory.onsubmit = (e) =>{
         categoryName,
     })
     
-    localStorage.setItem('Categorías', JSON.stringify(category));
+    localStorage.setItem('category', JSON.stringify(category));
+
     formAddCategory.reset();
 
 }
 
-function toShowCategories() {
-    const category = JSON.parse(localStorage.getItem('category')) || [];
-    const selects = [];
-    for (let i = 0; i < category.length; i++) { //Guardamos los datos de usuario en user.
-        const category = category[i]; //Creamos en un string una fila para la tabla, con los datos del usuario en cada celda
-        const option = `          
-        <option>${categoryOptionDefault}</option>
-        <option>${category.categoryName}</option>
-    `
-        selects.push(option)
-    }
-    selectCategories.innerHTML = selects.join('');
-    console.log(selects.join(''));
-}
-toShowCategories();
+
