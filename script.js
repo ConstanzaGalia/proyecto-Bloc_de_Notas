@@ -151,4 +151,19 @@ formAddCategory.onsubmit = (e) =>{
 
 }
 
+function displayCategories () {
+    const category = JSON.parse(localStorage.getItem('category')) || [];
+    const options = [];
+
+    for (let i = 0; i < category.length; i++) {
+        const category = category[i];
+        const option = `
+        <option>${category.categoryName}</option>
+        `
+        options.push(option);
+    }
+    selectCategories.innerHTML = options.join('');
+
+}
+
 
