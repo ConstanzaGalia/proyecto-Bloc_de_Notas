@@ -24,8 +24,6 @@ formLogin.onsubmit = function (e) {
     }
 }
 
-
-
 //FORMULARIO CREATE ACCOUNT 
 const formCreateAccount = document.getElementById('formCreateAccount');
 const userCreateAccountInput = document.getElementById('userCreateAccount');
