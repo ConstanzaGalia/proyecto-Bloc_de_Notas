@@ -4,22 +4,19 @@ const inputUsuario = document.getElementById('usuario');
 const inputPassword = document.getElementById('password');
 const alerta = document.getElementById('alerta');
 
-const persona = {
-    usuario: '',
-    password: '',
-}
 
 formLogin.onsubmit = function (e) {
     e.preventDefault();
+    const users = JSON.parse(localStorage.getItem('users')) || [];
     const usuario = inputUsuario.value;
     const password = inputPassword.value;
-    const usuarioValido = (usuario === persona.usuario) && (password === persona.password);
+    const usuarioEncontrado = users.find((u)=> u.usuario === usuario & u.password === password);
+    const usuarioValido = (usuario === usuarioEncontrado) && (password === usuarioEncontrado);
 
     if (usuarioValido) {
         alert('Logueo Exitoso');
         window.location.href = './index.html'
     }else{
-        alert('Datos inválidos');
         alerta.classList.remove('d-none');
     }
 }

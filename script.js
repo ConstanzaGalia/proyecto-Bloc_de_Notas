@@ -15,7 +15,6 @@ const searchInput = document.getElementById('searchInput');
 const formAddCategory = document.getElementById('formAddCategory');
 const categoryNameInput = document.getElementById('categoryName');
 const selectCategories = document.getElementById('selectCategories');
-let categoryOptionDefault = 'General';
 
 
 
@@ -26,7 +25,8 @@ formNotes.onsubmit = (event) => {
     const notes = JSON.parse(localStorage.getItem('notes')) || [];
     //Tomar los valores de la nota
     const titleNote = titleNoteInput.value;
-    const textAreaNote =textAreaNoteInput.value;
+    const textAreaNote = textAreaNoteInput.value;
+    const category = selectCategories.value;
     //Funcion para crear el id unico para cada nota
     const generateId = function () {
         return '_' + Math.random().toString(36).substr(2, 9);
@@ -36,6 +36,7 @@ formNotes.onsubmit = (event) => {
     notes.push({
         titleNote,
         textAreaNote,
+        category,
         id: generateId(), //ID
         createdAt, //Fecha de creación de la nota - con Objeto Date
     })
@@ -59,7 +60,7 @@ function displayNotes(notes) {
         <div class="card mx-3" style="width: 18rem;">
                 <div class="card-body">
                     <h5 class="card-title">${note.titleNote}</h5>
-                    <h6 class="card-subtitle mb-2 text-muted"></h6>
+                    <h6 class="card-subtitle mb-2 text-muted">${note.category}</h6>
                     <hr>
                     <p class="card-text">${note.textAreaNote}</p>
                 </div>
@@ -156,9 +157,9 @@ function displayCategories () {
     const options = [];
 
     for (let i = 0; i < category.length; i++) {
-        const category = category[i];
+        const categoria = category[i];
         const option = `
-        <option>${category.categoryName}</option>
+        <option>${categoria.categoryName}</option>
         `
         options.push(option);
     }
