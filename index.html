@@ -33,7 +33,7 @@
         <div class="row my-5">
             <div class="col-m-4 mx-auto">
                 <!-- Button trigger modal Create Note -->
-                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModal" onclick="displayCategories()">
+                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modalCreateNote" onclick="displayCategories()">
                     Agregar Nota
                 </button>
             </div>
@@ -51,8 +51,22 @@
             </div>
         </div>
     </div>
+
+    <div id="divCategorias" class="container col-md-6 my-5">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Categorías</th>
+                </tr>
+            </thead>
+            <tbody id="categoriesTable">
+
+
+            </tbody>
+        </table>
+    </div>
         
-        <div class="container my-3">
+        <div class="container my-5">
             <div id="tableNotes" class="row">
                 
 
@@ -60,14 +74,12 @@
 
 
 
+            </div>
         </div>
-    </div>
-
-
 
 
     <!-- Modal Create Note -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="modalCreateNote" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -164,7 +176,7 @@
                                 placeholder="Agregue una Categoría" required maxlength="30">
                         </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary my-3">Agregar</button>
+                        <button type="submit" class="btn btn-primary my-3" onclick="displayCategories()">Agregar</button>
                         <button type="button" class="btn btn-secondary my-3" data-dismiss="modal">Close</button>
                     </div>
                 </form>

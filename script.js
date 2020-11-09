@@ -15,6 +15,7 @@ const searchInput = document.getElementById('searchInput');
 const formAddCategory = document.getElementById('formAddCategory');
 const categoryNameInput = document.getElementById('categoryName');
 const selectCategories = document.getElementById('selectCategories');
+const categoriesTable = document.getElementById('categoriesTable');
 
 
 
@@ -48,6 +49,7 @@ formNotes.onsubmit = (event) => {
     formNotes.reset();
     console.log("formNotes", formNotes)
     displayAllNotes();
+    $('#modalCreateNote').modal('hide');
 }
 
 function displayNotes(notes) {
@@ -131,6 +133,7 @@ searchForm.onsubmit = (e) => {
     const filteredNotes = notes.filter(note => (
         note.titleNote.toLowerCase().includes(term.toLowerCase())
     || note.textAreaNote.toLowerCase().includes(term.toLowerCase())
+    || note.category.toLowerCase().includes(term.toLowerCase())
     ));
     displayNotes(filteredNotes);
 }
@@ -149,22 +152,42 @@ formAddCategory.onsubmit = (e) =>{
     localStorage.setItem('category', JSON.stringify(category));
 
     formAddCategory.reset();
-
+    $('#modalAddCategory').modal('hide');
 }
 
 function displayCategories () {
     const category = JSON.parse(localStorage.getItem('category')) || [];
     const options = [];
+    const row = [];
 
     for (let i = 0; i < category.length; i++) {
         const categoria = category[i];
         const option = `
         <option>${categoria.categoryName}</option>
         `
+        const tr = `          
+        <tr>
+            <td>${categoria.categoryName}</td>
+            
+            <td>
+            <!-- Button trigger Edit Modal -->
+            <button onclick="deleteCategory('${categoria.categoryName}')" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
+            </td>
+        </tr>
+    `
         options.push(option);
+        row.push(tr);
     }
     selectCategories.innerHTML = options.join('');
+    categoriesTable.innerHTML = row.join('');
 
 }
+displayCategories();
 
+function deleteCategory(categoria) {
+    const category = JSON.parse(localStorage.getItem('category')) || [];
+    const filteredCategories = category.filter((c) => c.categoryName !== categoria);
+    localStorage.setItem('category', JSON.stringify(filteredCategories));
+    displayCategories();
+}
 
