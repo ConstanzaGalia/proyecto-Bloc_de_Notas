@@ -1,15 +1,28 @@
 
-body{
-    font-family: "Fira sin condensación", sans-serif;
-    min-height: 100vh;
+.body-style{
+    font-family: 'Architects Daughter', cursive;
     position: relative;
-    padding-bottom: 12rem;
 }
 
 .barra-navegacion{
-    background-color: #073954;
+    height: 15rem;
     color:white;
     font-weight: bold;                      
+}
+
+.titulo{
+    font-family: 'Gloria Hallelujah', cursive;
+    font-size: 30px;
+}
+
+.btn-back-login{
+    position: relative;
+    left: 50%;
+}
+
+
+.logo-note{
+    height: 130px;
 }
 
 #textAreaNote{
@@ -22,11 +35,46 @@ body{
 
 
 .footer{
-    height: 3rem;
-    position: absolute;
+    background-color: #003867;
+    height: 6rem;
+    position: relative;
     bottom: 0;
 }
 
+.hr-format{
+    border-width: 5px;
+    border-color: #003867;
+}
+
+.add-botons{
+    color: white;
+    background-color: #003867;
+}
+
+.add-botons:hover{
+    color: white;
+    transform: scale(1.2) perspective(1px)
+}
+
+#seccionNotas{
+    height: 700px;
+    background-image: url(./img/seccion-notas.jpg);
+    background-position: center;
+    background-size: cover;
+}
+
+.card-notes{
+    font-family: 'Architects Daughter', cursive;
+    font-size: 20px;
+    color: white;
+    background-color: #003967e5;
+    min-height: 250px;
+}
+
+.hr-card{
+    border-color: white;
+    border-width: 2px;
+}
 
 .img-fondo{
     background-image: url(https://cutewallpaper.org/21/wallpapers-azul/Wallpaper-Minimalista.-Azul-Oscuro-Wallpapers-en-2019-.jpg);
@@ -35,19 +83,81 @@ body{
 
 #login{
     height: 100vh;
-    max-height:500px;
+    min-height:500px;
 }
 
 .logo-position{
-    position: absolute;
-    left: 30%;
-    top: 20%;
+    position: fixed;
+    left: 5%;
+    top: 1%;
+}
+
+.text-position{
+    font-size: 2rem;
+    position: fixed;
+    left: 15%;
+    top: 10%;
 }
 
 .form-position{
+    color: white;
+    font-weight: bold;
     position: fixed;
-    left: 30%;
     top:30%;
-    width: 40rem;
     text-align: center;
+    background-color: rgba(172, 172, 175, 0.151);
+    
+}
+
+.modal-bg-cover{
+    background-image: url(https://img.freepik.com/foto-gratis/tablero-madera-fondo_1339-5418.jpg?size=626&ext=jpg);
+    
+}
+
+.modal-addNote-style{
+    background-image:url(https://i.pinimg.com/originals/ed/70/3c/ed703cc446791608113e0d51a9d9978c.png);
+    background-position: center;
+    background-size: cover;
+}
+
+.modal-add-category{
+    color: #003867;
+    font-weight: 700;
+    background-image: url(https://image.freepik.com/foto-gratis/fondo-textura-madera-marron-claro_53876-75016.jpg);
+}
+
+@media (min-width: 768px) { 
+    .form-position{
+        width: 40rem;
+        left: 30%;
+    }
+    .titulo{
+        padding: 30px;
+    }
+    
+}
+
+@media (max-width: 768px) { 
+    .text-position{
+        font-size: 1.5rem;
+        position: fixed;
+        left: 30%;
+        top: 10%;
+    }
+    .logo-note{
+        height: 120px;
+    }
+    .logo-position{
+        position: fixed;
+        left: 5%;
+        top: 3%;
+    }
+    .titulo-seccion1{
+        font-size: 25px;
+    }
+    .sub-titulo-seccion1{
+        font-size: 20px;
+    }
+    
+    
 }

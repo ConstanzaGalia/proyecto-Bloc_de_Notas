@@ -10,10 +10,10 @@ formLogin.onsubmit = function (e) {
     const users = JSON.parse(localStorage.getItem('users')) || [];
     const usuario = inputUsuario.value;
     const password = inputPassword.value;
-    const usuarioEncontrado = users.find((u)=> u.usuario === usuario & u.password === password);
-    const usuarioValido = (usuario === usuarioEncontrado) && (password === usuarioEncontrado);
+    const usuarioEncontrado = users.find((u)=> u.usuario === usuario && u.password === password);
 
-    if (usuarioValido) {
+
+    if (usuarioEncontrado) {
         alert('Logueo Exitoso');
         window.location.href = './index.html'
     }else{

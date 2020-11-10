@@ -1,3 +1,8 @@
+//BACK LOGIN
+function backlogin() {
+    window.location.href = './login.html'
+}
+
 //DECLARACIÓN  DE VARIABLES FORMULARIO AGREGAR NOTAS
 const formNotes = document.getElementById('formNotes');
 const titleNoteInput = document.getElementById('titleNote');
@@ -59,16 +64,16 @@ function displayNotes(notes) {
         const note = notes[i];
         const date = new Date (note.createdAt);
         const card = `
-        <div class="card mx-3" style="width: 18rem;">
+        <div class="card m-5 card-notes" style="width: 18rem;">
                 <div class="card-body">
-                    <h5 class="card-title">${note.titleNote}</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">${note.category}</h6>
-                    <hr>
-                    <p class="card-text">${note.textAreaNote}</p>
+                    <h5 class="card-title text-center">${note.titleNote}</h5>
+                    <h6 class="card-subtitle my-3 text-center">Categoria: ${note.category}</h6>
+                    <hr class="hr-card">
+                    <p class="card-text"> Nota:<br> ${note.textAreaNote}</p>
                 </div>
-                <div class="card-footer text-muted">${date.toLocaleString()}
+                <div class="card-footer border-light text-muted">${date.toLocaleString()}
         <!-- Button trigger Edit Note -->
-                <button type="button" class="btn btn-sm btn-warning text-light" data-toggle="modal" data-target="#modalEditNote" onclick="uploadFormEdit('${note.id}')">
+                <button type="button" class="btn btn-sm btn-warning text-light ml-3" data-toggle="modal" data-target="#modalEditNote" onclick="uploadFormEdit('${note.id}')">
                 <i class="fas fa-user-edit"></i>                
                 <button onclick="deleteNote('${note.id}')" class="btn btn-sm btn-danger mx-2">
                 <i class="fas fa-trash-alt"></i></button>
@@ -109,10 +114,11 @@ formEditNote.onsubmit = (e) => {
     const notes = JSON.parse(localStorage.getItem('notes')) || [];
     const titleNote = titleNoteEdit.value;
     const textAreaNote = textAreaNoteEdit.value;
+    const categoryName = selectCategories.value;
     const createdAt = Date.now();
     //Actualizar las notas en un nuevo array
     const updateNote = notes.map((note) => (
-        (note.id === editNoteId) ? {...note, titleNote, textAreaNote, createdAt} : note
+        (note.id === editNoteId) ? {...note, titleNote, categoryName, textAreaNote, createdAt} : note
         ))
     //Guardar las notas modificadas en localStorage.
     const notesEdit = JSON.stringify(updateNote);
@@ -151,6 +157,7 @@ formAddCategory.onsubmit = (e) =>{
     
     localStorage.setItem('category', JSON.stringify(category));
 
+    displayCategories();
     formAddCategory.reset();
     $('#modalAddCategory').modal('hide');
 }
@@ -186,6 +193,13 @@ displayCategories();
 
 function deleteCategory(categoria) {
     const category = JSON.parse(localStorage.getItem('category')) || [];
+    const notes = JSON.parse(localStorage.getItem('notes')) || [];
+
+    const isUsed = notes.some((n) => n.category === categoria);
+    if (isUsed){
+        return alert('La categoria esta en uso, no puede eliminarla');
+    }
+
     const filteredCategories = category.filter((c) => c.categoryName !== categoria);
     localStorage.setItem('category', JSON.stringify(filteredCategories));
     displayCategories();

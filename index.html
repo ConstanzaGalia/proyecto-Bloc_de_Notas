@@ -12,17 +12,20 @@
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
         integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
     <!--Google Fonts-->
-    <link href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:500,700" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Muli:400,400i,800,800i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Architects+Daughter&display=swap" rel="stylesheet">
     <!--CSS Propio-->
     <link rel="stylesheet" href="./style.css">
-
+    <link rel="icon" href="./img/logo note.png" type="image/x-icon">
     <title>Notes</title>
 </head>
 
-<body>
-    <nav id="navBar" class="navbar navbar-expand-lg barra-navegacion p-5">
-        <h3>NOTAS</h3>
+<body class="body-style">
+    <nav id="navBar" class="navbar navbar-expand-lg barra-navegacion p-5 img-fondo">
+        <img src="./img/logo note.png" class="logo-note" alt="">
+        <h4 class="text-light titulo">App Bloc de Notas</h4>
+        <button class="btn btn-secondary btn-back-login" onclick="backlogin()"><i class="far fa-arrow-alt-circle-left mr-3"></i>Login</button>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
             aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -30,23 +33,29 @@
     </nav>
 
     <div class="container">
+        <h2 class="my-5 text-center titulo-seccion1">Guarde sus notas en este bloc</h2>
+        <h4 class="text-muted text-center mb-5 sub-titulo-seccion1">Agregue categorias para ordenar y filtrar sus notas</h4>
+        <hr class="hr-format">
         <div class="row my-5">
             <div class="col-m-4 mx-auto">
                 <!-- Button trigger modal Create Note -->
-                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modalCreateNote" onclick="displayCategories()">
+                <button type="button" class="btn add-botons" data-toggle="modal" data-target="#modalCreateNote"
+                    onclick="displayCategories()">
                     Agregar Nota
                 </button>
             </div>
             <div class="col-m-4 mx-auto">
                 <!-- Button trigger modal Create Category -->
-                <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#modalAddCategory">
+                <button type="button" class="btn add-botons" data-toggle="modal" data-target="#modalAddCategory">
                     Agregar Categoría
                 </button>
             </div>
             <div class="col-m-4 mx-auto">
                 <form id="searchForm" class="form-inline my-2 my-lg-0">
-                    <input id="searchInput" class="form-control mr-sm-2" type="search" placeholder="Ingrese su busqueda" aria-label="Search">
-                    <button class="btn btn-outline-info my-2 my-sm-0" type="submit" onclick="displayAllNotes()"><i class="fas fa-search"></i></button>
+                    <input id="searchInput" class="form-control mr-sm-2" type="search" placeholder="Ingrese su busqueda"
+                        aria-label="Search">
+                    <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit" onclick="displayAllNotes()"><i
+                            class="fas fa-search"></i></button>
                 </form>
             </div>
         </div>
@@ -57,6 +66,7 @@
             <thead>
                 <tr>
                     <th scope="col">Categorías</th>
+                    <th scope="col">Eliminar</th>
                 </tr>
             </thead>
             <tbody id="categoriesTable">
@@ -65,23 +75,26 @@
             </tbody>
         </table>
     </div>
-        
-        <div class="container my-5">
-            <div id="tableNotes" class="row">
-                
 
+<div id="seccionNotas" class="container-fluid">
+    <div class="container my-5">
+        <div id="tableNotes" class="row">
             
-
-
-
-            </div>
+            
+            
+            
+            
+            
         </div>
+    </div>
+</div>
+
 
 
     <!-- Modal Create Note -->
-    <div class="modal fade" id="modalCreateNote" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade modal-bg-cover" id="modalCreateNote" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
-            <div class="modal-content">
+            <div class="modal-content modal-addNote-style">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Mis Notas</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -92,26 +105,27 @@
                     <form id="formNotes">
                         <div class="form-group">
                             <label for="exampleFormControlInput1">Titulo</label>
-                            <input type="text" class="form-control" id="titleNote"
-                                placeholder="Titulo de la nota" required maxlength="60">
+                            <input type="text" class="form-control" id="titleNote" placeholder="Titulo de la nota"
+                                required maxlength="60">
                         </div>
                         <div class="form-group">
                             <label for="exampleFormControlSelect1">Seleccionar Categoría</label>
                             <select class="form-control" id="selectCategories" required>
-                            
-                        
-                                
+
+
+
                             </select>
                         </div>
                         <div class="form-group">
                             <label for="exampleFormControlTextarea1">Nota</label>
-                            <textarea class="form-control" id="textAreaNote" rows="3" required maxlength="500"></textarea>
+                            <textarea class="form-control" id="textAreaNote" rows="3" required
+                                maxlength="500"></textarea>
                         </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary my-3">Guardar</button>
-                        <button type="button" class="btn btn-secondary my-3" data-dismiss="modal">Close</button>
-                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn add-botons my-3">Guardar</button>
+                    <button type="button" class="btn btn-secondary my-3" data-dismiss="modal">Cerrar</button>
+                </div>
                 </form>
             </div>
         </div>
@@ -122,7 +136,7 @@
     <!-- Modal Edit Note -->
     <div class="modal fade" id="modalEditNote" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
-            <div class="modal-content">
+            <div class="modal-content modal-addNote-style">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Mis Notas</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -133,26 +147,20 @@
                     <form id="formEditNote">
                         <div class="form-group">
                             <label for="exampleFormControlInput1">Titulo</label>
-                            <input type="text" class="form-control" id="titleNoteEdit"
-                                placeholder="Titulo de la nota" required maxlength="60">
+                            <input type="text" class="form-control" id="titleNoteEdit" placeholder="Titulo de la nota"
+                                required maxlength="60">
                         </div>
-                        <div class="form-group">
-                            <label for="exampleFormControlSelect1">Seleccionar Categoría</label>
-                            <select class="form-control" id="selectCategories" required>
-                            
                         
-                                
-                            </select>
-                        </div>
                         <div class="form-group">
                             <label for="exampleFormControlTextarea1">Nota</label>
-                            <textarea class="form-control" id="textAreaNoteEdit" rows="3" required maxlength="500"></textarea>
+                            <textarea class="form-control" id="textAreaNoteEdit" rows="3" required
+                                maxlength="500"></textarea>
                         </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary my-3">Editar</button>
-                        <button type="button" class="btn btn-secondary my-3" data-dismiss="modal">Close</button>
-                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn add-botons my-3">Editar</button>
+                    <button type="button" class="btn btn-secondary my-3" data-dismiss="modal">Cerrar</button>
+                </div>
                 </form>
             </div>
         </div>
@@ -161,7 +169,7 @@
     <!-- Modal Create Category -->
     <div class="modal fade" id="modalAddCategory" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
-            <div class="modal-content">
+            <div class="modal-content modal-add-category">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Categorías</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -175,35 +183,38 @@
                             <input type="text" class="form-control mb-5" id="categoryName"
                                 placeholder="Agregue una Categoría" required maxlength="30">
                         </div>
-                    <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary my-3" onclick="displayCategories()">Agregar</button>
-                        <button type="button" class="btn btn-secondary my-3" data-dismiss="modal">Close</button>
-                    </div>
-                </form>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn add-botons my-3"
+                                onclick="displayCategories()">Agregar</button>
+                            <button type="button" class="btn btn-secondary my-3" data-dismiss="modal">Cerrar</button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
 
-
 <footer>
-    <div class="container-fluid bg-info footer">
-    
+    <div class="container-fluid footer">
+        <div class="container text-center text-light p-4">
+            Copyright © App Bloc Notas 2020
+        </div>
     </div>
 </footer>
 
 
-    <!--Scripts Bootstrap-->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
-        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js"
-        integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s"
-        crossorigin="anonymous"></script>
-    <!--Script Propio-->
-    <script src="./script.js"></script>
+        <!--Scripts Bootstrap-->
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+            crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+            integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+            crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js"
+            integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s"
+            crossorigin="anonymous"></script>
+        <!--Script Propio-->
+        <script src="./script.js"></script>
 
 </body>
 
