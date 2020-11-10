@@ -158,6 +158,13 @@
     .sub-titulo-seccion1{
         font-size: 20px;
     }
-    
-    
+    #seccionNotas {
+        height: 900px;
+    }
+}
+
+@media (max-width: 454px) {
+    .logo-note {
+        height: 90px;
+    }
 }
