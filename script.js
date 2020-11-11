@@ -64,7 +64,7 @@ function displayNotes(notes) {
         const note = notes[i];
         const date = new Date (note.createdAt);
         const card = `
-        <div class="card m-5 card-notes" style="width: 18rem;">
+        <div class="card m-3 card-notes" style="width: 18rem;">
                 <div class="card-body">
                     <h5 class="card-title text-center">${note.titleNote}</h5>
                     <h6 class="card-subtitle my-3 text-center">Categoria: ${note.category}</h6>
@@ -105,6 +105,7 @@ const uploadFormEdit = (noteId) => {
     const notes = JSON.parse(localStorage.getItem('notes')) || [];
     const note = notes.find((note) => note.id === noteId)
     titleNoteEdit.value = note.titleNote;
+    categoryName.value = note.category;
     textAreaNoteEdit.value = note.textAreaNote;
     editNoteId = note.id;
 }
@@ -114,7 +115,7 @@ formEditNote.onsubmit = (e) => {
     const notes = JSON.parse(localStorage.getItem('notes')) || [];
     const titleNote = titleNoteEdit.value;
     const textAreaNote = textAreaNoteEdit.value;
-    const categoryName = selectCategories.value;
+    const categoryName = categoryNameInput.value;
     const createdAt = Date.now();
     //Actualizar las notas en un nuevo array
     const updateNote = notes.map((note) => (
@@ -141,6 +142,7 @@ searchForm.onsubmit = (e) => {
     || note.textAreaNote.toLowerCase().includes(term.toLowerCase())
     || note.category.toLowerCase().includes(term.toLowerCase())
     ));
+    searchForm.reset();
     displayNotes(filteredNotes);
 }
 
@@ -180,6 +182,10 @@ function displayCategories () {
             <!-- Button trigger Edit Modal -->
             <button onclick="deleteCategory('${categoria.categoryName}')" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
             </td>
+            <td>
+            <button onclick="categoryFilter('${categoria.categoryName}')" class="btn btn-sm btn-secondary mx-2"><i class="fas fa-filter"></i></button>
+            <button class="btn btn-sm btn-dark ml-4" onclick="displayAllNotes()">X</button>
+            </td>
         </tr>
     `
         options.push(option);
@@ -205,3 +211,11 @@ function deleteCategory(categoria) {
     displayCategories();
 }
 
+
+function categoryFilter(categoria) {
+    const notes = JSON.parse(localStorage.getItem('notes')) || [];
+    const filteredNotes = notes.filter(note => (
+        note.category === categoria
+    ));
+    displayNotes(filteredNotes);
+}

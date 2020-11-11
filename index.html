@@ -54,8 +54,10 @@
                 <form id="searchForm" class="form-inline mt-5 my-lg-0">
                     <input id="searchInput" class="form-control mr-sm-2" type="search" placeholder="Ingrese su busqueda"
                         aria-label="Search">
-                    <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit" onclick="displayAllNotes()"><i
-                            class="fas fa-search"></i></button>
+                    <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit">
+                    <i class="fas fa-search"></i></button>
+                    <button class="btn btn-outline-secondary my-2 my-sm-0 mx-3" type="button" onclick="displayAllNotes()">
+                        <i class="far fa-arrow-circle-left"></i></button>
                 </form>
             </div>
         </div>
@@ -67,9 +69,11 @@
                 <tr>
                     <th scope="col">Categorías</th>
                     <th scope="col">Eliminar</th>
+                    <th scope="col">Filtrar por categoria</th>
                 </tr>
             </thead>
             <tbody id="categoriesTable">
+            
 
 
             </tbody>
@@ -77,7 +81,7 @@
     </div>
 
 <div id="seccionNotas" class="container-fluid">
-        <div id="tableNotes" class="row">
+        <div id="tableNotes" class="row justify-content-center">
             
             
             
@@ -148,7 +152,14 @@
                             <input type="text" class="form-control" id="titleNoteEdit" placeholder="Titulo de la nota"
                                 required maxlength="60">
                         </div>
-                        
+                        <div class="form-group">
+                            <label for="exampleFormControlSelect1">Seleccionar Categoría</label>
+                            <select class="form-control" id="selectCategories" required>
+
+                            
+
+                            </select>
+                        </div>
                         <div class="form-group">
                             <label for="exampleFormControlTextarea1">Nota</label>
                             <textarea class="form-control" id="textAreaNoteEdit" rows="3" required
