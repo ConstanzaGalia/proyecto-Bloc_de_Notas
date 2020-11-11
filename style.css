@@ -57,7 +57,7 @@
 }
 
 #seccionNotas{
-    height: 700px;
+    min-height: 700px;
     background-image: url(./img/seccion-notas.jpg);
     background-position: center;
     background-size: cover;
