@@ -12,6 +12,7 @@ const tableNotes = document.getElementById('tableNotes');
 const titleNoteEdit = document.getElementById('titleNoteEdit');
 const textAreaNoteEdit = document.getElementById('textAreaNoteEdit');
 const formEditNote = document.getElementById('formEditNote');
+const selectCategoriesEdit = document.getElementById('selectCategoriesEdit');
 let editNoteId = '';
 //DECLARACIÓN  DE VARIABLES INPUT SEARCH NOTES
 const searchForm = document.getElementById('searchForm');
@@ -105,7 +106,7 @@ const uploadFormEdit = (noteId) => {
     const notes = JSON.parse(localStorage.getItem('notes')) || [];
     const note = notes.find((note) => note.id === noteId)
     titleNoteEdit.value = note.titleNote;
-    categoryName.value = note.category;
+    selectCategoriesEdit.value = note.category;
     textAreaNoteEdit.value = note.textAreaNote;
     editNoteId = note.id;
 }
@@ -115,11 +116,11 @@ formEditNote.onsubmit = (e) => {
     const notes = JSON.parse(localStorage.getItem('notes')) || [];
     const titleNote = titleNoteEdit.value;
     const textAreaNote = textAreaNoteEdit.value;
-    const categoryName = categoryNameInput.value;
+    const category = selectCategoriesEdit.value;
     const createdAt = Date.now();
     //Actualizar las notas en un nuevo array
     const updateNote = notes.map((note) => (
-        (note.id === editNoteId) ? {...note, titleNote, categoryName, textAreaNote, createdAt} : note
+        (note.id === editNoteId) ? {...note, titleNote, category, textAreaNote, createdAt} : note
         ))
     //Guardar las notas modificadas en localStorage.
     const notesEdit = JSON.stringify(updateNote);
@@ -172,7 +173,7 @@ function displayCategories () {
     for (let i = 0; i < category.length; i++) {
         const categoria = category[i];
         const option = `
-        <option>${categoria.categoryName}</option>
+        <option id="categoryOption">${categoria.categoryName}</option>
         `
         const tr = `          
         <tr>
@@ -192,6 +193,7 @@ function displayCategories () {
         row.push(tr);
     }
     selectCategories.innerHTML = options.join('');
+    selectCategoriesEdit.innerHTML = options.join('');
     categoriesTable.innerHTML = row.join('');
 
 }
